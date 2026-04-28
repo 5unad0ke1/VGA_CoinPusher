@@ -5,23 +5,19 @@ public sealed class CoinPhysics : MonoBehaviour
 
     private static readonly string TAG_PUSHER = "Pusher";
     private static readonly string TAG_FINISH = "Finish";
+    private static readonly int COIN_INCREMENT = 1;
 
     private bool _isTrigger;
 
-
-    void Update()
-    {
-
-    }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag(TAG_PUSHER) && _isTrigger)
+        if (_isTrigger && collision.gameObject.CompareTag(TAG_PUSHER))
         {
             transform.SetParent(collision.transform, true);
         }
         if (collision.gameObject.CompareTag(TAG_FINISH))
         {
-            CoinMessage.Counter.ChangeCoin(1);
+            CoinMessage.Counter.ChangeCoin(COIN_INCREMENT);
             Destroy(gameObject);
         }
     }

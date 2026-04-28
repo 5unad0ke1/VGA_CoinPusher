@@ -7,6 +7,8 @@ public sealed class CoinFactory : MonoBehaviour
     [SerializeField] private Vector3 _initializePos;
     [SerializeField] private Vector3 _initializeScale;
     [SerializeField] private GameObject _coinPrefab;
+
+    private readonly int COIN_DECREMENT = -1;
     void Start()
     {
         Debug.Assert(_coinPrefab != null);
@@ -28,7 +30,7 @@ public sealed class CoinFactory : MonoBehaviour
         }
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            CoinMessage.Counter.ChangeCoin(-1);
+            CoinMessage.Counter.ChangeCoin(COIN_DECREMENT);
             Instantiate(_coinPrefab, transform.position, Quaternion.identity);
         }
     }
