@@ -11,7 +11,7 @@ public sealed class CoinPhysics : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag(TAG_PUSHER) && _isTrigger)
+        if (_isTrigger && collision.gameObject.CompareTag(TAG_PUSHER))
         {
             transform.SetParent(collision.transform, true);
         }
