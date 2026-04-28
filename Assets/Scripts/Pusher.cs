@@ -14,7 +14,6 @@ public sealed class Pusher : MonoBehaviour
         _parent = transform.parent;
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector3 center = _parent.position;
