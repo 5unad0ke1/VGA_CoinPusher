@@ -8,11 +8,6 @@ public sealed class CoinPhysics : MonoBehaviour
 
     private bool _isTrigger;
 
-
-    void Update()
-    {
-
-    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag(TAG_PUSHER) && _isTrigger)
