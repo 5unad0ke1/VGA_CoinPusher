@@ -5,6 +5,7 @@ public sealed class CoinPhysics : MonoBehaviour
 
     private static readonly string TAG_PUSHER = "Pusher";
     private static readonly string TAG_FINISH = "Finish";
+    private static readonly int COIN_INCREMENT = 1;
 
     private bool _isTrigger;
 
@@ -16,7 +17,7 @@ public sealed class CoinPhysics : MonoBehaviour
         }
         if (collision.gameObject.CompareTag(TAG_FINISH))
         {
-            CoinMessage.Counter.ChangeCoin(1);
+            CoinMessage.Counter.ChangeCoin(COIN_INCREMENT);
             Destroy(gameObject);
         }
     }
