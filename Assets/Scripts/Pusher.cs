@@ -8,6 +8,7 @@ public sealed class Pusher : MonoBehaviour
     private Rigidbody _rigidbody;
     private Transform _parent;
 
+    private readonly float PUSH_RANGE = 2.5f;
     void Start()
     {
         TryGetComponent(out _rigidbody);
@@ -17,6 +18,7 @@ public sealed class Pusher : MonoBehaviour
     void Update()
     {
         Vector3 center = _parent.position;
-        _rigidbody.MovePosition(center + Vector3.Lerp(Vector3.zero, Vector3.forward * 2.5f, (Mathf.Sin(Time.time * Mathf.Deg2Rad * 360f / _duration) + 1f) * 0.5f));
+        float t = (Mathf.Sin(Time.time * Mathf.Deg2Rad * 360f / _duration) + 1f) * 0.5f;
+        _rigidbody.MovePosition(center + Vector3.Lerp(Vector3.zero, Vector3.forward * PUSH_RANGE, t));
     }
 }
