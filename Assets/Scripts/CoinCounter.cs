@@ -15,6 +15,11 @@ public sealed class CoinCounter : MonoBehaviour
 
         UpdateText();
     }
+    private void OnDestroy()
+    {
+        if (CoinMessage.Counter == this)
+            CoinMessage.Counter = null;
+    }
     public void ChangeCoin(int coin)
     {
         _currentCoin += coin;
