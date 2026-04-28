@@ -3,14 +3,21 @@ using UnityEngine.InputSystem;
 
 public sealed class CoinFactory : MonoBehaviour
 {
+    [SerializeField] private PlayerInput input;
     [SerializeField] private int _count;
     [SerializeField] private Vector3 _initializePos;
     [SerializeField] private Vector3 _initializeScale;
     [SerializeField] private GameObject _coinPrefab;
 
+    private bool _isInteract;
     private readonly int COIN_DECREMENT = -1;
+    void OnJump()
+    {
+        _isInteract = true;
+    }
     void Start()
     {
+        _isInteract = false;
         Debug.Assert(_coinPrefab != null);
 
         for (int i = 0; i < _count; i++)
@@ -28,8 +35,9 @@ public sealed class CoinFactory : MonoBehaviour
         {
             return;
         }
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (_isInteract)
         {
+            _isInteract = false;
             CoinMessage.Counter.ChangeCoin(COIN_DECREMENT);
             Instantiate(_coinPrefab, transform.position, Quaternion.identity);
         }
